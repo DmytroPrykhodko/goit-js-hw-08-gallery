@@ -135,3 +135,10 @@ function modalClose() {
     refs.linhtboxImg.src = "";
     refs.linhtboxImg.alt = "";
 }
+
+// Функция обработки Click на оверлей
+function overlayClick(event) {
+    if (event.currentTarget === event.target) {
+        modalClose();
+    }
+}
