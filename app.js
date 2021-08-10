@@ -111,3 +111,27 @@ function galleryClickHandler(event) {
 
     // Открытие модального окна по клику на элементе галереи
     modalOpenClick();
+
+    // Подмена значения атрибутов изображения модального окна
+    refs.linhtboxImg.src = event.target.dataset.source;
+    refs.linhtboxImg.alt = event.target.alt;
+}
+// <<--
+
+// Функция открытия модалки
+function modalOpenClick() {
+    refs.lightbox.classList.add("is-open");
+    window.addEventListener("keydown", pressKey);
+    refs.linhtboxBtn.addEventListener("click", modalClose);
+    refs.overlay.addEventListener("click", overlayClick);
+}
+
+// Функция закрытия модалки
+function modalClose() {
+    refs.lightbox.classList.remove("is-open");
+    refs.linhtboxBtn.removeEventListener("click", modalClose);
+    refs.overlay.removeEventListener("click", overlayClick);
+    window.removeEventListener("keydown", pressKey);
+    refs.linhtboxImg.src = "";
+    refs.linhtboxImg.alt = "";
+}
