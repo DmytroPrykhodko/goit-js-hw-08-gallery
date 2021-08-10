@@ -97,3 +97,17 @@ const makeImagesTemplateMarkup = (images, i) => {
 const makeImagesTemplate = galleryItems.map(makeImagesTemplateMarkup).join("");
 refs.gallery.insertAdjacentHTML("beforeend", makeImagesTemplate);
 // <<--
+
+// -->> Реализация делегирования на галерее `ul.js-gallery` и получение `url` большого изображения.
+refs.gallery.addEventListener("click", galleryClickHandler);
+
+function galleryClickHandler(event) {
+    event.preventDefault();
+    if (event.target.nodeName !== "IMG") {
+        return;
+    }
+    // Индекс открытого изображения
+    indexOpenImg = Number(event.target.dataset.index);
+
+    // Открытие модального окна по клику на элементе галереи
+    modalOpenClick();
