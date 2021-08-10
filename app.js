@@ -72,3 +72,28 @@ const refs = {
     overlay: document.querySelector(".lightbox__overlay"),
 };
 let indexOpenImg;
+
+// -->> Создание и рендер разметки по массиву данных `galleryItems` по предоставленному шаблону.
+const makeImagesTemplateMarkup = (images, i) => {
+    const { preview, original, description } = images;
+    return `
+  <li class="gallery__item">
+  <a
+    class="gallery__link"
+    href=${original}
+  >
+    <img
+      class="gallery__image"
+      src=${preview}
+      data-source=${original}
+      data-index=${i}
+      alt=${description}
+    />
+  </a>
+</li>
+  `;
+};
+
+const makeImagesTemplate = galleryItems.map(makeImagesTemplateMarkup).join("");
+refs.gallery.insertAdjacentHTML("beforeend", makeImagesTemplate);
+// <<--
